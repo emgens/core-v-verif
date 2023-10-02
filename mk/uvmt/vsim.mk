@@ -34,8 +34,11 @@ VCOVER                  = vcover
 VWORK     				= work
 VSIM_COV_MERGE_DIR      = $(SIM_CFG_RESULTS)/$(CFG)/merged
 UVM_HOME               ?= $(abspath $(shell which $(VLIB))/../../verilog_src/uvm-1.2/src)
-DPI_INCLUDE            ?= $(abspath $(shell which $(VLIB))/../../include)
 USES_DPI = 1
+
+# Special var to point to tool and installation dependent path of DPI headers.
+# Used to recompile dpi_dasm_spike if needed (by default, not needed).
+DPI_INCLUDE            ?= $(abspath $(shell which $(VLIB))/../../include)
 
 # Default flags
 VSIM_USER_FLAGS         ?=
@@ -76,7 +79,10 @@ VSIM_PMA_INC += +incdir+$(TBSRC_HOME)/uvmt \
 
 VLOG_LDGEN_FLAGS ?= \
                     -suppress 2577 \
+<<<<<<< HEAD
                     -suppress 2720 \
+=======
+>>>>>>> 2dd5594be3f81c3f58f677a6ccbabeee388e90ee
                     -suppress 2583 \
                     -suppress 13185 \
                     -suppress 13314 \
@@ -98,12 +104,18 @@ VOPT_LDGEN_FLAGS ?= \
                     $(QUIET)
 
 VSIM_LDGEN_FLAGS ?= \
+<<<<<<< HEAD
 		-batch \
 		-do $(VSIM_SCRIPT_DIR)/vsim.tcl
+=======
+                    -batch \
+                    -do $(VSIM_SCRIPT_DIR)/vsim.tcl
+>>>>>>> 2dd5594be3f81c3f58f677a6ccbabeee388e90ee
 
 ###############################################################################
 # VLOG (Compilation)
 VLOG_FLAGS    ?= \
+<<<<<<< HEAD
                  -suppress 2577 \
                  -suppress 2720 \
                  -suppress 2583 \
@@ -120,6 +132,24 @@ VLOG_FLAGS    ?= \
                  -writetoplevels  uvmt_$(CV_CORE_LC)_tb
 
 VLOG_FILE_LIST_IDV =
+=======
+		-suppress 2577 \
+		-suppress 2583 \
+		-suppress 13185 \
+		-suppress 13314 \
+		-suppress 13288 \
+		-suppress 2181 \
+		-suppress 13262 \
+		-suppress vlog-2745 \
+		-timescale "1ns/1ps" \
+		-sv \
+		-64 \
+		-mfcu \
+		+acc=rb \
+		$(QUIET) \
+		-writetoplevels  uvmt_$(CV_CORE_LC)_tb
+
+>>>>>>> 2dd5594be3f81c3f58f677a6ccbabeee388e90ee
 VLOG_FILE_LIST = -f $(DV_UVMT_PATH)/uvmt_$(CV_CORE_LC).flist
 
 VLOG_FLAGS += $(DPILIB_VLOG_OPT)
@@ -140,6 +170,7 @@ endif
 ###############################################################################
 # VOPT (Optimization)
 VOPT_FLAGS    ?= \
+<<<<<<< HEAD
               -debugdb \
               -fsmdebug \
               -suppress 7034 \
@@ -147,6 +178,14 @@ VOPT_FLAGS    ?= \
               -suppress 2247 \
               +acc \
               $(QUIET)
+=======
+                 -64 \
+                 -debugdb \
+                 -fsmdebug \
+                 -suppress 7034 \
+                 +acc \
+                 $(QUIET)
+>>>>>>> 2dd5594be3f81c3f58f677a6ccbabeee388e90ee
 
 ###############################################################################
 # VSIM (Simulaion)

@@ -29,6 +29,7 @@ __pycache__
 dvt_build.log
 xrun.history
 xrun.log
+xrun.key
 xcelium.d/
 waves.shm/
 *.log
@@ -64,3 +65,7 @@ transcript
 .opt-rtl
 tools/spike
 tools/verilator*
+*_results/
+*.signature_output
+ucli.key
+vcs.cmd
